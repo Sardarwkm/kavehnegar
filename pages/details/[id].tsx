@@ -3,7 +3,7 @@ import { postsApi } from "@/api";
 import { useRouter } from "next/router";
 import PostDetails from "@components/PostDetails/PostDetails";
 import PostDetailsError from "@components/PostDetails/PostDetailsError";
-import PostDetailsLoading from "@components/PostDetails/PostDetailsLoading";
+import Loading from "@components/Loading";
 
 // I could have used a file in tha same route as posts page and use it dynamic rout
 // but since I was asked to implement a seperate page for the details, here we go
@@ -21,9 +21,8 @@ const Details = () => {
     if (router.query.id) setId(+router.query.id);
   }, [router.query.id]);
 
-  if (postStatus === "pending") return <PostDetailsLoading />;
+  if (postStatus === "pending") return <Loading />;
   if (postError) return <PostDetailsError id={id} />;
-
   return (
     <div className='mt-6 flex px-4'>
       <div className='md:w-3/4 mx-auto lg:mt-4 '>

@@ -8,7 +8,7 @@ interface Props {
 const PostDetails = ({ title, body }: Props) => {
   const router = useRouter();
   return (
-    <div className='max-h-[85vh] overflow-y-scroll min-h-[80%] px-6 py-4 bg-white text-black bg-zinc-100 rounded overflow-hidden shadow-md'>
+    <div className='max-h-[85vh] overflow-y-auto min-h-[80%] px-6 py-4 bg-white text-black bg-zinc-100 rounded overflow-hidden shadow-md'>
       <div className='font-bold'>{title}</div>
       <div className='mt-2'>{body}</div>
 

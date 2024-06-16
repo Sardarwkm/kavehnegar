@@ -1,5 +1,6 @@
 import { postsApi } from "@/api";
 import ListItem from "@/src/components/ListItem";
+import Loading from "@/src/components/Loading";
 import React from "react";
 
 interface PostType {
@@ -17,6 +18,8 @@ const Posts = () => {
     isFetching: isGetPostsFetching,
     isRefetching: isGetPostsRefetching,
   } = postsApi.useGetPosts();
+
+  if (getPostsStatus === "pending") return <Loading />;
 
   return (
     <div className='mt-10 flex h-screen px-4'>

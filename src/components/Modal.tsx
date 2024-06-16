@@ -1,15 +1,24 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
+interface Props {
+  show: boolean;
+  children: ReactNode;
+  handleSubmit: () => void;
+  handleCancel: () => void;
+  confirmDisabled: boolean;
+  confirmLoading: boolean;
+}
 const Modal = ({
   show,
   children,
   handleSubmit,
   handleCancel,
   confirmDisabled,
-}) => {
+  confirmLoading,
+}: Props) => {
   return (
     <div
-      onClick={() => handleCancel(false)}
+      onClick={() => !confirmLoading && handleCancel()}
       className={`fixed inset-0 flex justify-center items-center transition-all ${
         show ? "block bg-black/30  " : "invisible  "
       }`}>
@@ -21,7 +30,7 @@ const Modal = ({
         <div className='absolute bottom-3 w-full flex justify-center gap-8'>
           <button
             onClick={handleSubmit}
-            disabled={confirmDisabled}
+            disabled={confirmDisabled || confirmLoading}
             className='px-6 text-white py-2 bg-teal-600 rounded disabled:text-gray-500 disabled:bg-neutral-300'>
             Post
           </button>

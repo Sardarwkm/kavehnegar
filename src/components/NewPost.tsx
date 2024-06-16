@@ -1,26 +1,45 @@
-import { Modal } from "antd";
 import React from "react";
 
-const NewPost = ({ show, setShow }) => {
-  const handleConfirm = () => {
-    console.log("object");
-  };
+interface NewPost {
+  title: string;
+  body: string;
+}
+interface Props {
+  newPostData: NewPost;
+  setNewPostData: React.Dispatch<React.SetStateAction<NewPost>>;
+}
+const NewPost = ({ newPostData, setNewPostData }: Props) => {
   return (
-    <Modal
-      open={true}
-      //   maskClosable={false}
-      onOk={handleConfirm}
-      confirmLoading={false}
-      onCancel={setShow(false)}
-      okButtonProps={{
-        disabled: false,
-      }}
-      className='text-center  w'
-      okText='Post'
-      cancelText='Cancel'
-      title={"New Post"}>
-      <div className='mb-3 rtl'>sdsd</div>
-    </Modal>
+    <form className='w-full text-center'>
+      <div className='mb-4'>New Post</div>
+      <div className='flex justify-between items-center'>
+        <label htmlFor='title' className='w-1/12 text-left'>
+          Title
+        </label>
+        <input
+          id='title'
+          type='text'
+          className='w-11/12 h-10 border p-3 focus-within:outline-none focus-within:border-2'
+          onChange={(e) =>
+            setNewPostData({ ...newPostData, title: e.target.value })
+          }
+          value={newPostData.title}
+        />
+      </div>
+      <div className='flex justify-between items-center mt-2'>
+        <label htmlFor='body' className='w-1/12 text-left'>
+          Body
+        </label>
+        <textarea
+          id='body'
+          className='w-11/12 h-64 p-3 border focus-within:outline-none focus-within:border-2'
+          onChange={(e) =>
+            setNewPostData({ ...newPostData, body: e.target.value })
+          }
+          value={newPostData.body}
+        />
+      </div>
+    </form>
   );
 };
 
