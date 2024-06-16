@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Home() {

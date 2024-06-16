@@ -1,8 +1,8 @@
 import React, { useLayoutEffect, useState } from "react";
 import { postsApi } from "@/api";
 import { useRouter } from "next/router";
-import PostDetails from "@components/PostDetails/PostDetails";
-import PostDetailsError from "@components/PostDetails/PostDetailsError";
+import PostDetails from "@/src/components/PostDetails";
+import ShowError from "@/src/components/ShowError";
 import Loading from "@components/Loading";
 
 // I could have used a file in tha same route as posts page and use it dynamic rout
@@ -22,7 +22,7 @@ const Details = () => {
   }, [router.query.id]);
 
   if (postStatus === "pending") return <Loading />;
-  if (postError) return <PostDetailsError id={id} />;
+  if (postError) return <ShowError />;
   return (
     <div className='mt-6 flex px-4'>
       <div className='md:w-3/4 mx-auto lg:mt-4 '>

@@ -24,10 +24,10 @@ const Modal = ({
       }`}>
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`w-[80%] lg:w-[50%] h-[50%] bg-white rounded shadow p-6 transition-all 
-            ${show ? "scale-100 opacity-100" : "scale-0  opacity-0"}`}>
+        className={` w-[80%] lg:w-[60%] min-h-[60%] md:min-h-[55%] bg-white rounded shadow p-6 transition-all 
+            ${show ? "scale-100 opacity-100 " : "scale-0  opacity-0"}`}>
         {children}
-        <div className='absolute bottom-3 w-full flex justify-center gap-8'>
+        <div className='mt-4 w-[100%] flex justify-center gap-8'>
           <button
             onClick={handleSubmit}
             disabled={confirmDisabled || confirmLoading}

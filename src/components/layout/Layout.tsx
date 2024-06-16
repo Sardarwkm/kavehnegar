@@ -3,7 +3,7 @@ import Modal from "../Modal";
 import { postsApi } from "@/api";
 import toast, { Toaster } from "react-hot-toast";
 import NewPost from "../NewPost";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { cashKey } from "@/api/postsServices";
 
 interface Props {
@@ -32,21 +32,20 @@ const Layout = ({ children }: Props) => {
   };
   const handleCancel = () => {
     setNewPostData(initNewData);
-    toast.dismiss();
     setNewPostPopUp(false);
   };
 
   useEffect(() => {
     if (createPostStatus === "success") {
-      queryClient.invalidateQueries({ queryKey: [cashKey.getPosts] });
       toast.dismiss();
+      queryClient.invalidateQueries({ queryKey: [cashKey.getPosts] });
       toast.success("Posted!");
       handleCancel();
     } else if (createPostStatus === "error") {
       toast.dismiss();
       toast.error("Something went wrong!");
     }
-  }, [createPostStatus]);
+  }, [createPostStatus, createPostMutate]);
 
   return (
     <div className=''>
@@ -55,7 +54,7 @@ const Layout = ({ children }: Props) => {
         <button
           onClick={() => setNewPostPopUp(true)}
           className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg'>
-          Add
+          Post
         </button>
         <Modal
           show={newPostPopUp}
@@ -65,8 +64,8 @@ const Layout = ({ children }: Props) => {
           handleSubmit={handleSubmit}>
           <NewPost setNewPostData={setNewPostData} newPostData={newPostData} />
         </Modal>
+        <Toaster />
       </div>
-      <Toaster />
     </div>
   );
 };

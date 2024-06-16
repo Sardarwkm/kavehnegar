@@ -1,6 +1,7 @@
 import { postsApi } from "@/api";
-import ListItem from "@/src/components/ListItem";
-import Loading from "@/src/components/Loading";
+import ListItem from "@components/ListItem";
+import Loading from "@components/Loading";
+import ShowError from "@components/ShowError";
 import React from "react";
 
 interface PostType {
@@ -20,6 +21,7 @@ const Posts = () => {
   } = postsApi.useGetPosts();
 
   if (getPostsStatus === "pending") return <Loading />;
+  if (getPostsError) return <ShowError />;
 
   return (
     <div className='mt-10 flex h-screen px-4'>
