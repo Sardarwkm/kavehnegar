@@ -1,0 +1,7 @@
+// handling different api_urls for dev or prod envs
+const isProd = process.env.NODE_ENV === "production";
+module.exports = {
+  apiurl: isProd
+    ? process.env.NEXT_PUBLIC_API_URL_PROD
+    : process.env.NEXT_PUBLIC_API_URL_DEV,
+};
