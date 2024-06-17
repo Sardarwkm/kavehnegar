@@ -8,7 +8,8 @@ interface Props {
 }
 const ListItem = ({ index, id, title }: Props) => {
   const router = useRouter();
-
+  // using the next-router to navigate to the details page
+  // setting the id of the selected post in the url so upon sharing links it still works
   return (
     <div
       className='bg-white text-black bg-zinc-100 rounded overflow-hidden shadow-md mb-6 cursor-pointer hover:scale-105 transition-all'

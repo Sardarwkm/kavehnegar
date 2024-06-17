@@ -15,6 +15,8 @@ interface Post {
 }
 const initNewData = { title: "", body: "" };
 
+// I'm using the layout for the New Post button so it's always there even when navigating
+// It's handy and shows the user that the page is not being refreshed through navigation, which feels good
 const Layout = ({ children }: Props) => {
   const [newPostPopUp, setNewPostPopUp] = useState(false);
   const [newPostData, setNewPostData] = useState<Post>(initNewData);

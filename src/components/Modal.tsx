@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 interface Props {
   show: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   handleSubmit: () => void;
   handleCancel: () => void;
   confirmDisabled: boolean;
